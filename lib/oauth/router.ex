@@ -78,7 +78,6 @@ defmodule OAuth.Router do
     secret = Map.get(body, "client_secret")
     if secret == nil or client_id == nil do #allow for authorization via HTTP headers if not provided in body
       [client_id, secret] = Map.get(headers, "authorization", "") |> String.split() |> Enum.at(1) |> Base.decode64!() |> String.split(":")
-    done
     if Clients.verify(client_id, secret) == nil do
       conn
       |> put_resp_content_type("text/plain")
@@ -135,6 +134,7 @@ defmodule OAuth.Router do
                 |> send_resp(:ok, Jason.encode!(return))
             end
           end
+        end
       end
     end
   end
