@@ -30,9 +30,9 @@ RUN chown ${DEPLOY_USER}:${DEPLOY_USER} -R ${DEPLOY_USER_DIR}
 
 USER ${DEPLOY_USER}
 
-WORKDIR ${DEPLOY_USER_DIR}
+RUN git clone https://github.com/Rafaeltheraven/das.git ${DEPLOY_USER_DIR}
 
-RUN git clone https://github.com/Rafaeltheraven/das.git .
+WORKDIR ${DEPLOY_USER_DIR}
 
 RUN cp /runtime.exs.docker ${DEPLOY_USER_DIR}/releases/1.0/runtime.exs
 
