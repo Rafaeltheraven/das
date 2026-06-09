@@ -175,7 +175,7 @@ defmodule OAuth.Router do
           name: user.name,
         }
         scopes = Map.get(state, :scope, [])
-        data = if Enum.member?(scopes, "email") do Map.put(data, :email, user.email) else nil end
+        data = if Enum.member?(scopes, "email") do Map.put(data, :email, user.email) else data end
         conn
         |> put_resp_content_type("application/json")
         |> send_resp(:ok, Jason.encode!(data))
