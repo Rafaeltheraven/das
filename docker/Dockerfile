@@ -3,7 +3,9 @@ FROM debian:11
 ENV DEPLOY_USER das
 ENV DEPLOY_USER_DIR /opt/das
 
-RUN useradd ${DEPLOY_USER} --create-home --shell /bin/bash
+RUN mkdir ${DEPLOY_USER_DIR}
+
+RUN useradd ${DEPLOY_USER} --shell /bin/bash
 
 # install dependencies
 RUN apt-get update && \
