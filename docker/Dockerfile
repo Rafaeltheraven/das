@@ -8,9 +8,10 @@ RUN useradd ${DEPLOY_USER} --create-home --shell /bin/bash
 # install dependencies
 RUN apt-get update && \
     apt-get -y install --no-install-recommends \
-        bash locales sudo git \
+        bash locales sudo git ca-certificates \
 	libssl1.1 \
         && \
+    update-ca-certificates && \
     apt-get clean && \
     find /var/lib/apt/lists -type f -delete
 
