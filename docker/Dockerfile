@@ -26,8 +26,6 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 ENV LANG C.UTF-8
 
-COPY runtime.exs.docker ${DEPLOY_USER_DIR}/runtime.exs.docker
-
 RUN chown ${DEPLOY_USER}:${DEPLOY_USER} -R ${DEPLOY_USER_DIR}
 
 USER ${DEPLOY_USER}
@@ -36,6 +34,6 @@ WORKDIR ${DEPLOY_USER_DIR}
 
 RUN git clone https://github.com/Rafaeltheraven/das.git .
 
-RUN cp ${DEPLOY_USER_DIR}/runtime.exs.docker ${DEPLOY_USER_DIR}/releases/1.0/runtime.exs
+RUN cp /runtime.exs.docker ${DEPLOY_USER_DIR}/releases/1.0/runtime.exs
 
 CMD ["./das/bin/das", "start"]]
