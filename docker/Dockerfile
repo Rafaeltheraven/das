@@ -1,7 +1,7 @@
 FROM debian:11
 
 ENV DEPLOY_USER das
-ENV DEPLOY_USER_DIR /home/${DEPLOY_USER}
+ENV DEPLOY_USER_DIR /opt/das
 
 RUN useradd ${DEPLOY_USER} --create-home --shell /bin/bash
 
@@ -36,7 +36,5 @@ RUN mkdir ${DEPLOY_USER_DIR}/das
 WORKDIR ${DEPLOY_USER_DIR}/das
 
 RUN git clone https://github.com/Rafaeltheraven/das.git .
-
-RUN ln -s /runtime.exs.docker ./releases/1.0/runtime.exs
 
 CMD ["./das/bin/das", "start"]]
