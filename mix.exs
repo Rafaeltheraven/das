@@ -40,11 +40,12 @@ defmodule Das.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:jason, "~> 1.2"},
       {:ldap_asn, path: "ldap_asn/", manager: :rebar3},
-      {:joken, "~> 2.4"},
+      {:joken, "~> 2.6"},
       {:castore, "~> 1.0"},
       {:mint, "~> 1.0"},
       {:nimble_totp, "~> 1.0"},
-      {:eqrcode, "~> 0.1.10"}
+      {:eqrcode, "~> 0.1.10"},
+      {:jose, "~> 1.11.0"}
     ]
   end
 end
