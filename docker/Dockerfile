@@ -37,6 +37,6 @@ WORKDIR ${DEPLOY_USER_DIR}/das
 
 RUN git clone https://github.com/Rafaeltheraven/das.git .
 
-RUN cp /runtime.exs.docker ./releases/1.0/runtime.exs
+RUN ln -s /runtime.exs.docker ./releases/1.0/runtime.exs
 
 CMD ["./das/bin/das", "start"]]
