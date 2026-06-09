@@ -30,10 +30,12 @@ RUN chown ${DEPLOY_USER}:${DEPLOY_USER} -R ${DEPLOY_USER_DIR}
 
 USER ${DEPLOY_USER}
 
-RUN git clone https://github.com/Rafaeltheraven/das.git ${DEPLOY_USER_DIR}
+RUN mkdir ${DEPLOY_USER_DIR}/das
 
-WORKDIR ${DEPLOY_USER_DIR}
+WORKDIR ${DEPLOY_USER_DIR}/das
 
-RUN cp /runtime.exs.docker ${DEPLOY_USER_DIR}/releases/1.0/runtime.exs
+RUN git clone https://github.com/Rafaeltheraven/das.git .
+
+RUN cp /runtime.exs.docker ./releases/1.0/runtime.exs
 
 CMD ["./das/bin/das", "start"]]
