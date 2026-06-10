@@ -45,7 +45,9 @@ defmodule Das.MixProject do
       {:mint, "~> 1.0"},
       {:nimble_totp, "~> 1.0"},
       {:eqrcode, "~> 0.1.10"},
-      {:jose, "1.11.10", override: true}
+      {:jose, "1.11.10", override: true},
+      {:plug, "~> 1.7", override: true},
+      {:cowboy, "~> 2.6", override: true}
     ]
   end
 end
