@@ -1,11 +1,11 @@
-FROM debian:11
+FROM elixir:1.13
 
 ENV DEPLOY_USER das
 ENV DEPLOY_USER_DIR /opt/das
 
 RUN mkdir ${DEPLOY_USER_DIR}
 
-RUN useradd ${DEPLOY_USER} --shell /bin/bash
+RUN useradd ${DEPLOY_USER} --create-home --shell /bin/bash
 
 # install dependencies
 RUN apt-get update && \
@@ -39,4 +39,18 @@ WORKDIR ${DEPLOY_USER_DIR}/das
 
 RUN git clone https://github.com/Rafaeltheraven/das.git .
 
-CMD ["./das/bin/das", "start"]]
+RUN mix local.hex --force
+
+RUN mix local.rebar --force
+
+RUN mix deps.get
+
+ENV MIX_ENV=prod
+
+RUN mix release das
+
+RUN grep plug mix.lock
+
+RUN cp config/runtime.exs.docker ./_build/prod/rel/das/releases/1.0/runtime.exs
+
+CMD ["./_build/prod/rel/das/bin/das", "start"]
