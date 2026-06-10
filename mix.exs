@@ -5,7 +5,7 @@ defmodule Das.MixProject do
     [
       app: :das,
       version: "1.0.0",
-      elixir: "~> 1.10",
+      elixir: "~> 1.20",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       config_providers: [
@@ -45,9 +45,6 @@ defmodule Das.MixProject do
       {:mint, "~> 1.0"},
       {:nimble_totp, "~> 1.0"},
       {:eqrcode, "~> 0.1.10"},
-      {:jose, "1.11.10", override: true},
-      {:plug, "1.7.2", override: true},
-      {:cowboy, "2.6.3", override: true}
     ]
   end
 end
