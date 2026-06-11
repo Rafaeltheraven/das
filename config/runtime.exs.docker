@@ -61,3 +61,8 @@ database: System.get_env("DAS_DB_NAME", "das"),
 username: System.get_env("DAS_DB_USER", "das"),
 password: System.get_env("DAS_DB_PASS", "badgers"),
 hostname: System.get_env("DAS_DB_HOST", "localhost")
+
+IO.inspect(
+  Application.get_env(:das, Storage.SQLite),
+  label: "SQLITE CONFIG"
+)
