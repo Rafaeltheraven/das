@@ -38,6 +38,8 @@ WORKDIR ${DEPLOY_USER_DIR}/das
 
 RUN git clone https://github.com/Rafaeltheraven/das.git .
 
+RUN cp config/runtime.exs.docker config/runtime.exs
+
 RUN mix local.hex --force
 
 RUN mix local.rebar --force
@@ -48,6 +50,6 @@ ENV MIX_ENV=prod
 
 RUN mix release das
 
-RUN cp config/runtime.exs.docker ./_build/prod/rel/das/releases/1.0/runtime.exs
+WORKDIR ${DEPLOY_USER_DIR}/das/_build/prod/rel/das
 
-CMD ["./_build/prod/rel/das/bin/das", "start"]
+CMD ["./bin/das", "start"]
