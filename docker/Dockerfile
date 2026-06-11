@@ -1,4 +1,4 @@
-FROM elixir:1.13
+FROM elixir:1.20
 
 ENV DEPLOY_USER das
 ENV DEPLOY_USER_DIR /opt/das
@@ -11,7 +11,6 @@ RUN useradd ${DEPLOY_USER} --create-home --shell /bin/bash
 RUN apt-get update && \
     apt-get -y install --no-install-recommends \
         bash locales sudo git ca-certificates \
-	libssl1.1 \
         && \
     update-ca-certificates && \
     apt-get clean && \
@@ -48,8 +47,6 @@ RUN mix deps.get
 ENV MIX_ENV=prod
 
 RUN mix release das
-
-RUN grep plug mix.lock
 
 RUN cp config/runtime.exs.docker ./_build/prod/rel/das/releases/1.0/runtime.exs
 
