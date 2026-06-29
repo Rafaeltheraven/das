@@ -17,8 +17,8 @@ defmodule LDAP.Handler do
     {:ok, pid}
   end
 
-  def init(ref, transport, _ \\ []) do
-    (:ok, socket) = :ranch.handshake(ref)
+  def init(ref, transport, _opts \\ []) do
+    {:ok, socket} = :ranch.handshake(ref)
     loop(socket, transport, nil)
   end
 
