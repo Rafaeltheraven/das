@@ -12,13 +12,13 @@ defmodule LDAP.Handler do
   import Ecto.Query
   require Logger
 
-  def start_link(ref, socket, transport, opts) do
-    pid = spawn_link(fn -> init(ref, socket, transport, opts) end)
+  def start_link(ref, transport, opts) do
+    pid = spawn_link(fn -> init(ref, transport, opts) end)
     {:ok, pid}
   end
 
-  def init(ref, socket, transport, _ \\ []) do
-    :ok = :ranch.accept_ack(ref)
+  def init(ref, transport, _ \\ []) do
+    (:ok, socket) = :ranch:handshake(ref)
     loop(socket, transport, nil)
   end
 
