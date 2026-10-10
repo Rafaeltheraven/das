@@ -50,11 +50,11 @@ defmodule OAuth.IDToken.JWK do
   
       modulus_digits = Integer.digits(modulus, 256)
       modulus_bin = Enum.into(modulus_digits, <<>>, fn digit -> <<digit>> end)
-      modulus_encoded = Base.url_encode64(modulus_bin, padding=false)
+      modulus_encoded = Base.url_encode64(modulus_bin, padding: false)
   
       pubex_digits = Integer.digits(pubex, 256)
       pubex_bin = Enum.into(pubex_digits, <<>>, fn digit -> <<digit>> end)
-      pubex_encoded = Base.url_encode64(pubex_bin, padding=false)
+      pubex_encoded = Base.url_encode64(pubex_bin, padding: false)
   
       %{
         kty: "RSA",
