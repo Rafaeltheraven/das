@@ -190,7 +190,7 @@ defmodule OAuth.Router do
     claims = OAuth.IDToken.JWK.get()
     conn
     |> put_resp_content_type("application/jwk+json")
-    |> send_resp(:ok, Jason.encode!(claims))
+    |> send_resp(:ok, Jason.encode!(%{keys: [claims]}))
   end
 end
 
